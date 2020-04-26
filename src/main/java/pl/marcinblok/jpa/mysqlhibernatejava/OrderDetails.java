@@ -1,16 +1,13 @@
 package pl.marcinblok.jpa.mysqlhibernatejava;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "orderdetails")
 public class OrderDetails {
 
-	@Id
 	private Integer orderNumberId;
-	@Id
 	private String productCodeId;
 	private Integer quantityOrdered;
 	private double priceEach;

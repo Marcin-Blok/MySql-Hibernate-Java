@@ -11,7 +11,7 @@ public class Products {
 	@Column(name = "productCode")
 	private String productCodeId;
 	private String productName;
-	private String productLine;
+	private String productLineId;
 	private String productScale;
 	private String productVendor;
 	private String productDescription;
@@ -22,12 +22,12 @@ public class Products {
 	public Products() {
 	}
 
-	public Products(String productCodeId, String productName, String productLine, String productScale,
+	public Products(String productCodeId, String productName, String productLineId, String productScale,
 			String productVendor, String productDescription, Integer quantityInStock, double buyPrice, double mSRP) {
 		super();
 		this.productCodeId = productCodeId;
 		this.productName = productName;
-		this.productLine = productLine;
+		this.productLineId = productLineId;
 		this.productScale = productScale;
 		this.productVendor = productVendor;
 		this.productDescription = productDescription;
@@ -53,11 +53,11 @@ public class Products {
 	}
 
 	public String getProductLine() {
-		return productLine;
+		return productLineId;
 	}
 
 	public void setProductLine(String productLine) {
-		this.productLine = productLine;
+		this.productLineId = productLine;
 	}
 
 	public String getProductScale() {
@@ -111,7 +111,7 @@ public class Products {
 	@Override
 	public String toString() {
 		return "Products [productCode=" + productCodeId + ", productName=" + productName + ", productLine="
-				+ productLine + ", productScale=" + productScale + ", productVendor=" + productVendor
+				+ productLineId + ", productScale=" + productScale + ", productVendor=" + productVendor
 				+ ", productDescription=" + productDescription + ", quantityInStock=" + quantityInStock + ", buyPrice="
 				+ buyPrice + ", MSRP=" + MSRP + "]";
 	}

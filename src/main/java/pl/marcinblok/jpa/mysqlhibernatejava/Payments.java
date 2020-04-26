@@ -1,7 +1,6 @@
 package pl.marcinblok.jpa.mysqlhibernatejava;
 
 import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,30 +9,21 @@ import javax.persistence.Id;
 public class Payments {
 
 	@Id
-	private Integer customerId;
-	@Id
 	@Column(name = "checkNumber")
 	private String checkNumberId;
+	private Integer customerId;
 	private LocalDate paymentDate;
 	private double amount;
 
 	public Payments() {
 	}
 
-	public Payments(Integer customerId, String checkNumberId, LocalDate paymentDate, double amount) {
+	public Payments(String checkNumberId, Integer customerId, LocalDate paymentDate, double amount) {
 		super();
-		this.customerId = customerId;
 		this.checkNumberId = checkNumberId;
+		this.customerId = customerId;
 		this.paymentDate = paymentDate;
 		this.amount = amount;
-	}
-
-	public Integer getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(Integer customerId) {
-		this.customerId = customerId;
 	}
 
 	public String getCheckNumberId() {
@@ -42,6 +32,14 @@ public class Payments {
 
 	public void setCheckNumberId(String checkNumberId) {
 		this.checkNumberId = checkNumberId;
+	}
+
+	public Integer getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
 	}
 
 	public LocalDate getPaymentDate() {
@@ -62,8 +60,9 @@ public class Payments {
 
 	@Override
 	public String toString() {
-		return "Payments [customerNumberId=" + customerId + ", checkNumberId=" + checkNumberId + ", paymentDate="
+		return "Payments [checkNumberId=" + checkNumberId + ", customerId=" + customerId + ", paymentDate="
 				+ paymentDate + ", amount=" + amount + "]";
 	}
+	
 
 }
