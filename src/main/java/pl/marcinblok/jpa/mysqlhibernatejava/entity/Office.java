@@ -1,11 +1,13 @@
-package pl.marcinblok.jpa.mysqlhibernatejava;
+package pl.marcinblok.jpa.mysqlhibernatejava.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Offices {
+@Table(name = "offices")
+public class Office {
 
 	@Id
 	@Column(name = "officeCode")
@@ -19,10 +21,10 @@ public class Offices {
 	private String postalCode;
 	private String territory;
 
-	public Offices() {
+	public Office() {
 	}
 
-	public Offices(String officeCodeId, String city, String phone, String addressLine1, String addressLine2,
+	public Office(String officeCodeId, String city, String phone, String addressLine1, String addressLine2,
 			String state, String country, String postalCode, String territory) {
 		super();
 		this.officeCodeId = officeCodeId;

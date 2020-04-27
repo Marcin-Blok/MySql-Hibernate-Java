@@ -1,11 +1,13 @@
-package pl.marcinblok.jpa.mysqlhibernatejava;
+package pl.marcinblok.jpa.mysqlhibernatejava.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Customers {
+@Table(name = "customers")
+public class Customer {
 
 	@Id
 	@Column(name = "customerNumber")
@@ -21,12 +23,13 @@ public class Customers {
 	private String postCode;
 	private String country;
 	private Integer salesRepEmployeeNumber;
+	@Column(precision=10, scale=2)
 	private double creditLimit; // decimal(10,2)
 
-	public Customers() {
+	public Customer() {
 	}
 
-	public Customers(Integer customerId, String customerName, String contactLastName, String contactFirstName,
+	public Customer(Integer customerId, String customerName, String contactLastName, String contactFirstName,
 			String phone, String addressLine1, String addressLine2, String city, String state, String postCode,
 			String country, Integer salesRepEmployeeNumber, double creditLimit) {
 		super();

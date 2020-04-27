@@ -1,11 +1,13 @@
-package pl.marcinblok.jpa.mysqlhibernatejava;
+package pl.marcinblok.jpa.mysqlhibernatejava.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Employees {
+@Table(name = "employees")
+public class Employee {
 
 	@Id
 	@Column(name = "employeeNumber")
@@ -18,10 +20,10 @@ public class Employees {
 	private Integer reportsTo;
 	private String jobTitle;
 
-	public Employees() {
+	public Employee() {
 	}
 
-	public Employees(Integer employeeNumberId, String lastName, String firstName, String extension, String email,
+	public Employee(Integer employeeNumberId, String lastName, String firstName, String extension, String email,
 			String officeCodeId, Integer reportsTo, String jobTitle) {
 		super();
 		this.employeeNumberId = employeeNumberId;

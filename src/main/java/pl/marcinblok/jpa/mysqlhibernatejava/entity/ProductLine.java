@@ -1,23 +1,29 @@
-package pl.marcinblok.jpa.mysqlhibernatejava;
+package pl.marcinblok.jpa.mysqlhibernatejava.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
 
 @Entity
-public class ProductLines {
+@Table(name = "productlines")
+public class ProductLine {
 
 	@Id
 	@Column(name = "productLine")
 	private String productLineId;
 	private String textDescription;
 	private String htmlDescription; // mediumtext
-	private Integer image; // mediumblob
+	
+	@Lob 
+	@Column(length=16777215)
+	private byte[] image; // mediumblob
 
-	public ProductLines() {
+	public ProductLine() {
 	}
 
-	public ProductLines(String productLineId, String textDescription, String htmlDescription, Integer image) {
+	public ProductLine(String productLineId, String textDescription, String htmlDescription, byte[] image) {
 		super();
 		this.productLineId = productLineId;
 		this.textDescription = textDescription;
@@ -49,11 +55,11 @@ public class ProductLines {
 		this.htmlDescription = htmlDescription;
 	}
 
-	public Integer getImage() {
+	public byte[] getImage() {
 		return image;
 	}
 
-	public void setImage(Integer image) {
+	public void setImage(byte[] image) {
 		this.image = image;
 	}
 

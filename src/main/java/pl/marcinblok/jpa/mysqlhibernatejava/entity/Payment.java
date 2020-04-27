@@ -1,12 +1,14 @@
-package pl.marcinblok.jpa.mysqlhibernatejava;
+package pl.marcinblok.jpa.mysqlhibernatejava.entity;
 
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Payments {
+@Table(name = "payments")
+public class Payment {
 
 	@Id
 	@Column(name = "checkNumber")
@@ -15,10 +17,10 @@ public class Payments {
 	private LocalDate paymentDate;
 	private double amount;
 
-	public Payments() {
+	public Payment() {
 	}
 
-	public Payments(String checkNumberId, Integer customerId, LocalDate paymentDate, double amount) {
+	public Payment(String checkNumberId, Integer customerId, LocalDate paymentDate, double amount) {
 		super();
 		this.checkNumberId = checkNumberId;
 		this.customerId = customerId;

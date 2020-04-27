@@ -1,16 +1,19 @@
-package pl.marcinblok.jpa.mysqlhibernatejava;
+package pl.marcinblok.jpa.mysqlhibernatejava.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Products {
+@Table(name = "products")
+public class Product {
 
 	@Id
 	@Column(name = "productCode")
 	private String productCodeId;
 	private String productName;
+	@Column(name = "productLine")
 	private String productLineId;
 	private String productScale;
 	private String productVendor;
@@ -19,10 +22,10 @@ public class Products {
 	private double buyPrice; // decimal(10,2)
 	private double MSRP; // decimal(10,2)
 
-	public Products() {
+	public Product() {
 	}
 
-	public Products(String productCodeId, String productName, String productLineId, String productScale,
+	public Product(String productCodeId, String productName, String productLineId, String productScale,
 			String productVendor, String productDescription, Integer quantityInStock, double buyPrice, double mSRP) {
 		super();
 		this.productCodeId = productCodeId;

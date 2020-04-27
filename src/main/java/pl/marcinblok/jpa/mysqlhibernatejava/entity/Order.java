@@ -1,13 +1,15 @@
-package pl.marcinblok.jpa.mysqlhibernatejava;
+package pl.marcinblok.jpa.mysqlhibernatejava.entity;
 
 import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Orders {
+@Table(name = "customers")
+public class Order {
 
 	@Id
 	@Column(name = "orderNumber")
@@ -19,10 +21,10 @@ public class Orders {
 	private String comments;
 	private Integer customerId;
 
-	public Orders() {
+	public Order() {
 	}
 
-	public Orders(Integer orderNumberId, LocalDate orderDate, LocalDate requiredDate, LocalDate shippedDate,
+	public Order(Integer orderNumberId, LocalDate orderDate, LocalDate requiredDate, LocalDate shippedDate,
 			String status, String comments, Integer customerId) {
 		super();
 		this.orderNumberId = orderNumberId;
