@@ -6,23 +6,34 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
-import pl.marcinblok.jpa.mysqlhibernatejava.entity.ProductLine;
+public class ClassicModelsDAOImpl<T, V> implements ClassicModelsDAO<T, V> {
 
-public class ProductLineDAO implements ClassicModelsDAO<ProductLine, String> {
 	EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("db-unit");
-	EntityManager em = emf.createEntityManager();
+	EntityManager em;
 
-	public List<ProductLine> getAll() {
+	private final Class<T> type;
+
+	public ClassicModelsDAOImpl(Class<T> type) {
+		super();
+		this.type = type;
+	}
+
+	@Override
+	public List<T> getAll() {
+		em = emf.createEntityManager();
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ProductLine getById(String v) {
+	@Override
+	public T get(V v) {
 		em = emf.createEntityManager();
-		return em.find(ProductLine.class, v);
+		return em.find(type, v);
 	}
 
-	public void add(ProductLine t) {
+	@Override
+	public void add(T t) {
+		em = emf.createEntityManager();
 		EntityTransaction et = em.getTransaction();
 		try {
 			et.begin();
@@ -36,8 +47,10 @@ public class ProductLineDAO implements ClassicModelsDAO<ProductLine, String> {
 
 	}
 
-	public void remove(ProductLine t) {
-		t = getById(t.getProductLineId());
+	@Override
+	public void remove(V v) {
+		em = emf.createEntityManager();
+		T t = get(v);
 
 		EntityTransaction et = em.getTransaction();
 		try {
@@ -49,11 +62,13 @@ public class ProductLineDAO implements ClassicModelsDAO<ProductLine, String> {
 		} finally {
 			em.close();
 		}
+
 	}
 
-	public void update(ProductLine t) {
+	@Override
+	public void update(T t) {
 		// TODO Auto-generated method stub
-
+		em = emf.createEntityManager();
 	}
 
 }

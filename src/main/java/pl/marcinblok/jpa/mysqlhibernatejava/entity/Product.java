@@ -1,8 +1,13 @@
 package pl.marcinblok.jpa.mysqlhibernatejava.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,11 +27,14 @@ public class Product {
 	private double buyPrice; // decimal(10,2)
 	private double MSRP; // decimal(10,2)
 
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<OrderDetail> orderDetails = new ArrayList<>();
+
 	public Product() {
 	}
 
 	public Product(String productCodeId, String productName, String productLineId, String productScale,
-			String productVendor, String productDescription, Integer quantityInStock, double buyPrice, double mSRP) {
+			String productVendor, String productDescription, Integer quantityInStock, double buyPrice, double MSRP, List<OrderDetail> orderDetails) {
 		super();
 		this.productCodeId = productCodeId;
 		this.productName = productName;
@@ -36,7 +44,22 @@ public class Product {
 		this.productDescription = productDescription;
 		this.quantityInStock = quantityInStock;
 		this.buyPrice = buyPrice;
-		MSRP = mSRP;
+		this.MSRP = MSRP;
+		this.orderDetails = orderDetails;
+	}
+
+	public Product(String productCodeId, String productName, String productLineId, String productScale,
+			String productVendor, String productDescription, Integer quantityInStock, double buyPrice, double MSRP) {
+		super();
+		this.productCodeId = productCodeId;
+		this.productName = productName;
+		this.productLineId = productLineId;
+		this.productScale = productScale;
+		this.productVendor = productVendor;
+		this.productDescription = productDescription;
+		this.quantityInStock = quantityInStock;
+		this.buyPrice = buyPrice;
+		this.MSRP = MSRP;
 	}
 
 	public String getProductCodeId() {
@@ -55,12 +78,12 @@ public class Product {
 		this.productName = productName;
 	}
 
-	public String getProductLine() {
+	public String getProductLineId() {
 		return productLineId;
 	}
 
-	public void setProductLine(String productLine) {
-		this.productLineId = productLine;
+	public void setProductLineId(String productLineId) {
+		this.productLineId = productLineId;
 	}
 
 	public String getProductScale() {
@@ -111,9 +134,17 @@ public class Product {
 		MSRP = mSRP;
 	}
 
+	public List<OrderDetail> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(List<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
+
 	@Override
 	public String toString() {
-		return "Products [productCode=" + productCodeId + ", productName=" + productName + ", productLine="
+		return "Product [productCodeId=" + productCodeId + ", productName=" + productName + ", productLineId="
 				+ productLineId + ", productScale=" + productScale + ", productVendor=" + productVendor
 				+ ", productDescription=" + productDescription + ", quantityInStock=" + quantityInStock + ", buyPrice="
 				+ buyPrice + ", MSRP=" + MSRP + "]";

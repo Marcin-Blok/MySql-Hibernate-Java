@@ -2,52 +2,50 @@ package pl.marcinblok.jpa.mysqlhibernatejava.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "orderdetails")
 public class OrderDetail implements Serializable {
 
-	@Id
-	@Column(name = "orderNumber")
-	private Integer orderNumberId;
-	@Id
-	@Column(name = "productCode")
-	private String productCodeId;
+	@EmbeddedId
+	private OrderDetailsId id;
+	
 	private Integer quantityOrdered;
 	private double priceEach;
 	private Integer orderLineNumber;
+	
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@MapsId("productCodeId")
+	private Product product;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@MapsId("orderNumberId")
+	private Order order;
 
 	public OrderDetail() {
 	}
 
-	public OrderDetail(Integer orderNumberId, String productCodeId, Integer quantityOrdered, double priceEach,
-			Integer orderLineNumber) {
+	public OrderDetail(OrderDetailsId id, Integer quantityOrdered, double priceEach, Integer orderLineNumber) {
 		super();
-		this.orderNumberId = orderNumberId;
-		this.productCodeId = productCodeId;
+		this.id = id;
 		this.quantityOrdered = quantityOrdered;
 		this.priceEach = priceEach;
 		this.orderLineNumber = orderLineNumber;
 	}
 
-	public Integer getOrderNumberId() {
-		return orderNumberId;
+	public OrderDetailsId getId() {
+		return id;
 	}
 
-	public void setOrderNumberId(Integer orderNumberId) {
-		this.orderNumberId = orderNumberId;
-	}
-
-	public String getProductCodeId() {
-		return productCodeId;
-	}
-
-	public void setProductCodeId(String productCodeId) {
-		this.productCodeId = productCodeId;
+	public void setId(OrderDetailsId id) {
+		this.id = id;
 	}
 
 	public Integer getQuantityOrdered() {
@@ -76,9 +74,8 @@ public class OrderDetail implements Serializable {
 
 	@Override
 	public String toString() {
-		return "OrderDetails [orderNumberId=" + orderNumberId + ", productCodeId=" + productCodeId
-				+ ", quantityOrdered=" + quantityOrdered + ", priceEach=" + priceEach + ", orderLineNumber="
-				+ orderLineNumber + "]";
+		return "OrderDetail [id=" + id + ", quantityOrdered=" + quantityOrdered + ", priceEach=" + priceEach
+				+ ", orderLineNumber=" + orderLineNumber + "]";
 	}
 
 }
