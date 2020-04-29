@@ -13,7 +13,7 @@ W celu uruchomienia programu należy:
 10. Podaj "Password", identyczne z tym zapisanym w pliku docker-compose.yml.
 11. Zatwierdź klikając "Test connection".
 
-Po utworzeniu nowej bazy danychi połączeniu z nią, należy zaimportować skrypt bazy danych.
+Po utworzeniu nowej bazy danych i połączeniu z nią, należy zaimportować skrypt bazy danych.
 Adres odnośnika do skryptu:
 https://sp.mysqltutorial.org/wp-content/uploads/2018/03/mysqlsampledatabase.zip
 Pobrany plik należy "rozpakować" (np za pomocą programu winRAR) w dowolne miejsce na dysku.
@@ -21,7 +21,6 @@ Następnie, przejdź do MySQL Workbench i kliknij "Open a SQL script file" na pa
 Znajdż skrypt i zaimportuj klikając "Otwórz".
 Po zaimportowaniu, zaznacz całość Ctr+A oraz kliknij "Execute the selected portion of the script" inaczej ikona pioruna na pasku narzędzi.
 Następnie należy odświeżyć nowo utworzoną bazę danych klikając ikonę "Odśwież" w lewym oknie o oznaczeniu SCHEMAS.
-
 W tym momencie należy stworzyć własne, lokalne repozytorium projektu Sql-Hibernate-Java
 Następnie, zaimportuj projekt do IDE (Eclipse, IntelliJ).
 Procedura importowania projektu na przykładzie Eclipse:
@@ -33,15 +32,3 @@ Procedura importowania projektu na przykładzie Eclipse:
 	
 Dobra robota, stworzyłeś/łaś nową bazę danych oraz połączyłeś/łaś z nią swój projekt.
 Możesz teraz iść zrobić sobie kawę, Eclipse w międzyczasie zaimportuje wszystkie wskazane biblioteki.
-
-
-
-
-
-
-
-
-
- Następnie należy pobrać skrypt przykładowej bazy danych, ze strony odnośnika podanego poniżej: 
-https://sp.mysqltutorial.org/wp-content/uploads/2018/03/mysqlsampledatabase.zip
-5. Pobraną zawartość należy "wypakować" za pomocą np programu "winRAR" w głównym folderze projektu.
