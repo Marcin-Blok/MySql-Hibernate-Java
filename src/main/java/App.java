@@ -4,6 +4,8 @@ import java.util.List;
 import pl.marcinblok.jpa.mysqlhibernatejava.dao.ClassicModelsDAO;
 import pl.marcinblok.jpa.mysqlhibernatejava.dao.ClassicModelsDAOImpl;
 import pl.marcinblok.jpa.mysqlhibernatejava.entity.Office;
+import pl.marcinblok.jpa.mysqlhibernatejava.entity.Order;
+import pl.marcinblok.jpa.mysqlhibernatejava.entity.OrderDetail;
 import pl.marcinblok.jpa.mysqlhibernatejava.entity.Product;
 import pl.marcinblok.jpa.mysqlhibernatejava.entity.ProductLine;
 
@@ -45,6 +47,12 @@ public class App {
 		
 		// test jeden do wilu, wiele do jeden
 		
-
+		// Pan Jurek kupuje ciasteczka
+		
+		
+		// koszyk
+		List<OrderDetail> orders = new ArrayList<>();
+		
+		
 	}
 }
