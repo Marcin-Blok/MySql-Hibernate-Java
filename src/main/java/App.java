@@ -32,7 +32,7 @@ public class App {
 //		productDAO.add(product);
 		productDAO.add(product2);
 		
-		ProductLine findedProduct = productLineDAO.getById("buty");
+		ProductLine findedProduct = productLineDAO.getById("Ships");
 		System.out.println(findedProduct.getProductLineId());
 		System.out.println(findedProduct.getProducts());
 		
