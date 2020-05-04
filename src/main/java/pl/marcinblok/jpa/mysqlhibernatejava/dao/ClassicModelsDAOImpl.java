@@ -32,7 +32,7 @@ public class ClassicModelsDAOImpl<T, V> implements ClassicModelsDAO<T, V> {
 	}
 
 	@Override
-	public void add(T t) {
+	public void save(T t) {
 		em = emf.createEntityManager();
 		EntityTransaction et = em.getTransaction();
 		try {

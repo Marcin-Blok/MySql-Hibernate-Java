@@ -15,18 +15,17 @@ public class OrderDetail implements Serializable {
 
 	@EmbeddedId
 	private OrderDetailsId id;
-	
+
 	private Integer quantityOrdered;
 	private double priceEach;
 	private Integer orderLineNumber;
-	
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("productCodeId")
+	@MapsId("productCode")
 	private Product product;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("orderNumberId")
+	@MapsId("orderNumber")
 	private Order order;
 
 	public OrderDetail() {
@@ -38,6 +37,17 @@ public class OrderDetail implements Serializable {
 		this.quantityOrdered = quantityOrdered;
 		this.priceEach = priceEach;
 		this.orderLineNumber = orderLineNumber;
+	}
+
+	public OrderDetail(OrderDetailsId id, Integer quantityOrdered, double priceEach, Integer orderLineNumber,
+			Product product, Order order) {
+		super();
+		this.id = id;
+		this.quantityOrdered = quantityOrdered;
+		this.priceEach = priceEach;
+		this.orderLineNumber = orderLineNumber;
+		this.product = product;
+		this.order = order;
 	}
 
 	public OrderDetailsId getId() {

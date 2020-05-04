@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "customers")
+@Table(name = "orders")
 public class Order {
 
 	@Id
@@ -23,6 +23,8 @@ public class Order {
 	private LocalDate shippedDate;
 	private String status;
 	private String comments;
+	
+	@Column(name = "customerNumber")
 	private Integer customerId;
 
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)

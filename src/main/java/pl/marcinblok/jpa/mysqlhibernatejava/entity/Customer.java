@@ -20,17 +20,17 @@ public class Customer {
 	private String addressLine2;
 	private String city;
 	private String state;
-	private String postCode;
+	private String postalCode;
 	private String country;
 	private Integer salesRepEmployeeNumber;
-	@Column(precision=10, scale=2)
+	@Column(precision = 10, scale = 2)
 	private double creditLimit; // decimal(10,2)
 
 	public Customer() {
 	}
 
 	public Customer(Integer customerId, String customerName, String contactLastName, String contactFirstName,
-			String phone, String addressLine1, String addressLine2, String city, String state, String postCode,
+			String phone, String addressLine1, String addressLine2, String city, String state, String postalCode,
 			String country, Integer salesRepEmployeeNumber, double creditLimit) {
 		super();
 		this.customerId = customerId;
@@ -42,7 +42,7 @@ public class Customer {
 		this.addressLine2 = addressLine2;
 		this.city = city;
 		this.state = state;
-		this.postCode = postCode;
+		this.postalCode = postalCode;
 		this.country = country;
 		this.salesRepEmployeeNumber = salesRepEmployeeNumber;
 		this.creditLimit = creditLimit;
@@ -120,12 +120,12 @@ public class Customer {
 		this.state = state;
 	}
 
-	public String getPostCode() {
-		return postCode;
+	public String getPostalCode() {
+		return postalCode;
 	}
 
-	public void setPostCode(String postCode) {
-		this.postCode = postCode;
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
 	}
 
 	public String getCountry() {
@@ -157,7 +157,7 @@ public class Customer {
 		return "Customers [customerNumber_id=" + customerId + ", customerName=" + customerName + ", contactLastName="
 				+ contactLastName + ", contactFirstName=" + contactFirstName + ", phone=" + phone + ", addressLine1="
 				+ addressLine1 + ", addressLine2=" + addressLine2 + ", city=" + city + ", state=" + state
-				+ ", postCode=" + postCode + ", country=" + country + ", salesRepEmployeeNumber="
+				+ ", postCode=" + postalCode + ", country=" + country + ", salesRepEmployeeNumber="
 				+ salesRepEmployeeNumber + ", creditLimit=" + creditLimit + "]";
 	}
 
