@@ -7,5 +7,5 @@ public interface ClassicModelsDAO<T, V> {
 	T get(V v);
 	void save(T t);
 	void remove(V v);
-	void update(T t, V v);
+	void update(T t);
 }

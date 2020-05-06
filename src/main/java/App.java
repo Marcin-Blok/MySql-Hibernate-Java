@@ -93,6 +93,15 @@ public class App {
 //		listaAnny.add(dwaMasla);
 //		listaAnny.add(jedenJogurt);
 				
+
+		// tworzę kubek
+		Product kubek = new Product("99999", "kubek", "buty", "", "", "", 263, 82.37, 273.33);
+		productDAO.save(kubek);
+		System.out.println("Dodałem kubek");
+		
+		// akutalizuję
+		kubek.setProductName("Kubek nowy");
+		productDAO.update(kubek);
 		
 		
 

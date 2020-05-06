@@ -5,7 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
+
+import org.hibernate.Session;
 
 public class ClassicModelsDAOImpl<T, V> implements ClassicModelsDAO<T, V> {
 
@@ -67,18 +68,16 @@ public class ClassicModelsDAOImpl<T, V> implements ClassicModelsDAO<T, V> {
 	}
 
 	@Override
-	public void update(T t, V v) {
+	public void update(T t) {
 		em = emf.createEntityManager();
-		Query query = em.createQuery("UPDATE <?> SET column_name = :newValue WHERE column_name = :oldValue");
-		query.setParameter("newValue", t);
-		query.setParameter("oldValue", v);
+
 		try {
 			em.getTransaction().begin();
-			query.executeUpdate();
+			em.unwrap(Session.class).update(t);
 			em.getTransaction().commit();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			em.getTransaction().rollback();
-		}finally {
+		} finally {
 			em.clear();
 		}
 	}
