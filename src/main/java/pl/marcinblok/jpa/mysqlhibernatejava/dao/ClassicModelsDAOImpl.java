@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 public class ClassicModelsDAOImpl<T, V> implements ClassicModelsDAO<T, V> {
 
@@ -66,9 +67,20 @@ public class ClassicModelsDAOImpl<T, V> implements ClassicModelsDAO<T, V> {
 	}
 
 	@Override
-	public void update(T t) {
-		// TODO Auto-generated method stub
+	public void update(T t, V v) {
 		em = emf.createEntityManager();
+		Query query = em.createQuery("UPDATE <?> SET column_name = :newValue WHERE column_name = :oldValue");
+		query.setParameter("newValue", t);
+		query.setParameter("oldValue", v);
+		try {
+			em.getTransaction().begin();
+			query.executeUpdate();
+			em.getTransaction().commit();
+		}catch(Exception e) {
+			em.getTransaction().rollback();
+		}finally {
+			em.clear();
+		}
 	}
 
 }

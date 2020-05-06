@@ -28,7 +28,7 @@ Procedura importowania projektu na przykładzie Eclipse:
 2. Wybierz File/Import
 	W oknie wybierz: Existing Maven Projects
 	Następnie w "Root Directory" kliknij Browse i wskaż ścieżkę do folderu głównego gdzie zostało utworzone repozytorium lokalne projektu.
-	Po pojawieniu się okna z zaznaczonum plikiem pom.xml kliknij "Finish".
+	Po pojawieniu się okna z zaznaczonym plikiem pom.xml kliknij "Finish".
 	
 Dobra robota, stworzyłeś/łaś nową bazę danych oraz połączyłeś/łaś z nią swój projekt.
 Możesz teraz iść zrobić sobie kawę, Eclipse w międzyczasie zaimportuje wszystkie wskazane biblioteki.
