@@ -5,8 +5,8 @@ import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
@@ -21,11 +21,11 @@ public class OrderDetail implements Serializable {
 	private Integer orderLineNumber;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("productCode")
+	@JoinColumn(name="productCode", nullable=false, insertable=false, updatable=false)
 	private Product product;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("orderNumber")
+	@JoinColumn(name="orderNumber", nullable=false, insertable=false, updatable=false)
 	private Order order;
 
 	public OrderDetail() {

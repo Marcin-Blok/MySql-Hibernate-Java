@@ -27,7 +27,7 @@ public class Product {
 	private double buyPrice; // decimal(10,2)
 	private double MSRP; // decimal(10,2)
 
-	@OneToMany(mappedBy = "product", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<OrderDetail> orderDetails = new ArrayList<>();
 
 	public Product() {
@@ -147,7 +147,9 @@ public class Product {
 		return "Product [productCodeId=" + productCodeId + ", productName=" + productName + ", productLineId="
 				+ productLineId + ", productScale=" + productScale + ", productVendor=" + productVendor
 				+ ", productDescription=" + productDescription + ", quantityInStock=" + quantityInStock + ", buyPrice="
-				+ buyPrice + ", MSRP=" + MSRP + "]";
+				+ buyPrice + ", MSRP=" + MSRP;
 	}
+
+
 
 }

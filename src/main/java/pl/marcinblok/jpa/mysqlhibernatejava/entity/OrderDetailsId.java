@@ -14,6 +14,8 @@ public class OrderDetailsId implements Serializable {
 	@Column(name = "productCode")
 	private String productCodeId;
 
+	public OrderDetailsId() {}
+	
 	public OrderDetailsId(Integer orderNumberId, String productCodeId) {
 		super();
 		this.orderNumberId = orderNumberId;

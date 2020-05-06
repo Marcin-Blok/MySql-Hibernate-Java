@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
 
@@ -13,7 +14,7 @@ public class ClassicModelsDAOImpl<T, V> implements ClassicModelsDAO<T, V> {
 	EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("db-unit");
 	EntityManager em;
 
-	private final Class<T> type;
+	protected final Class<T> type;
 
 	public ClassicModelsDAOImpl(Class<T> type) {
 		super();
@@ -23,8 +24,13 @@ public class ClassicModelsDAOImpl<T, V> implements ClassicModelsDAO<T, V> {
 	@Override
 	public List<T> getAll() {
 		em = emf.createEntityManager();
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<T> query = em.createQuery("from " + type.getName(), type);
+		return query.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<T> getAllHibernate(){
+		return em.unwrap(Session.class).createQuery("from " + type.getName()).list();
 	}
 
 	@Override

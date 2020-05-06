@@ -4,6 +4,7 @@ import java.util.List;
 
 import pl.marcinblok.jpa.mysqlhibernatejava.dao.ClassicModelsDAO;
 import pl.marcinblok.jpa.mysqlhibernatejava.dao.ClassicModelsDAOImpl;
+import pl.marcinblok.jpa.mysqlhibernatejava.dao.ProductDAO;
 import pl.marcinblok.jpa.mysqlhibernatejava.entity.Customer;
 import pl.marcinblok.jpa.mysqlhibernatejava.entity.Office;
 import pl.marcinblok.jpa.mysqlhibernatejava.entity.Order;
@@ -14,7 +15,7 @@ import pl.marcinblok.jpa.mysqlhibernatejava.entity.ProductLine;
 
 public class App {
 	public static void main(String[] args) {
-		
+
 		// office
 		Office office = new Office("DEV-1456", "Boston", "0136465734", "woiejfw", "doweijewijwo", "New Jersey", "USA",
 				"057-NY", "owijf");
@@ -23,8 +24,7 @@ public class App {
 		ClassicModelsDAO<Office, String> officeDAO = new ClassicModelsDAOImpl<>(Office.class);
 		officeDAO.save(office);
 		officeDAO.save(office2);
-		
-		
+
 		// product line
 		ProductLine productLine = new ProductLine("buty556", "cos cos tam", "<p> cos tam opis</a>", null);
 		ClassicModelsDAO<ProductLine, String> productLineDAO = new ClassicModelsDAOImpl<>(ProductLine.class);
@@ -47,18 +47,20 @@ public class App {
 		productLine = new ProductLine("buty21", "cos cos tam", "<p> cos tam opis</a>", null, products);
 
 		productLineDAO.save(productLine);
-		
+
 		// zamawiający
-		Customer jurek = new Customer(1, "Jurek", "Nowak", "Jurek", "234234234", "", "", "Gdynia", "", "23-232", "", null, 22.0);
-		Customer anna = new Customer(2, "Anna", "Kowal", "Anna", "848848848", "", "", "Gliwice", "", "11-992", "", null, 123122.0);
+		Customer jurek = new Customer(1, "Jurek", "Nowak", "Jurek", "234234234", "", "", "Gdynia", "", "23-232", "",
+				null, 22.0);
+		Customer anna = new Customer(2, "Anna", "Kowal", "Anna", "848848848", "", "", "Gliwice", "", "11-992", "", null,
+				123122.0);
 		ClassicModelsDAO<Customer, Integer> customerDAO = new ClassicModelsDAOImpl<>(Customer.class);
 		customerDAO.save(jurek);
 		customerDAO.save(anna);
-		
+
 		// product line
 		productLine = new ProductLine("nabial", "", "<p> nabial</a>", null);
 		productLineDAO.save(productLine);
-				
+
 		// product
 		Product mleko = new Product("777", "mleko", "nabial", "asdf", "sdfa", "", 22, 2.22, 3.33);
 		Product jogurt = new Product("778", "jogurt", "nabial", "asdf", "sdfa", "", 22, 1.22, 4.33);
@@ -67,24 +69,22 @@ public class App {
 		// zamówienie
 		Order orderJurek = new Order(1, LocalDate.now(), LocalDate.now(), LocalDate.now(), "", "", 1, null);
 		Order orderAnna = new Order(2, LocalDate.now(), LocalDate.now(), LocalDate.now(), "", "", 2, null);
-		
+
 		// szczegóły zamówienia
-		OrderDetail osiemMlek = new OrderDetail(new OrderDetailsId(1,"777"), 8, 2.22, 1, mleko, orderJurek);
-		OrderDetail jedenJogurt = new OrderDetail(new OrderDetailsId(1,"778"), 1, 1.22, 1, jogurt, orderJurek);
-		OrderDetail dwaMasla = new OrderDetail(new OrderDetailsId(1,"779"), 2, 3.22, 1,  maslo, orderJurek);
-		
-		OrderDetail jogurtyAnny = new OrderDetail(new OrderDetailsId(2,"778"), 5, 1.22, 1, jogurt, orderAnna);
-		OrderDetail maslaAnny = new OrderDetail(new OrderDetailsId(2,"779"), 3, 3.22, 1,  maslo, orderAnna);
-		
-		
+		OrderDetail osiemMlek = new OrderDetail(new OrderDetailsId(1, "777"), 8, 2.22, 1, mleko, orderJurek);
+		OrderDetail jedenJogurt = new OrderDetail(new OrderDetailsId(1, "778"), 1, 1.22, 1, jogurt, orderJurek);
+		OrderDetail dwaMasla = new OrderDetail(new OrderDetailsId(1, "779"), 2, 3.22, 1, maslo, orderJurek);
+
+		OrderDetail jogurtyAnny = new OrderDetail(new OrderDetailsId(2, "778"), 5, 1.22, 1, jogurt, orderAnna);
+		OrderDetail maslaAnny = new OrderDetail(new OrderDetailsId(2, "779"), 3, 3.22, 1, maslo, orderAnna);
+
 		ClassicModelsDAO<OrderDetail, Integer> orderDetailDAO = new ClassicModelsDAOImpl<>(OrderDetail.class);
 		orderDetailDAO.save(osiemMlek);
 		orderDetailDAO.save(jedenJogurt);
 		orderDetailDAO.save(dwaMasla);
 		orderDetailDAO.save(jogurtyAnny);
 		orderDetailDAO.save(maslaAnny);
-		
-		
+
 //		List<OrderDetail> listaJurka = new ArrayList<>();
 //		listaJurka.add(osiemMlek);
 //		listaJurka.add(jedenJogurt);
@@ -92,18 +92,41 @@ public class App {
 //		List<OrderDetail> listaAnny = new ArrayList<>();
 //		listaAnny.add(dwaMasla);
 //		listaAnny.add(jedenJogurt);
-				
 
 		// tworzę kubek
 		Product kubek = new Product("99999", "kubek", "buty", "", "", "", 263, 82.37, 273.33);
 		productDAO.save(kubek);
 		System.out.println("Dodałem kubek");
-		
+
 		// akutalizuję
 		kubek.setProductName("Kubek nowy");
 		productDAO.update(kubek);
-		
-		
+
+		// wszystkie produkty
+		System.out.println("------------ produkty ------------");
+		List<Product> allProducts = productDAO.getAll();
+		for (Product p : allProducts) {
+			System.out.println(p);
+		}
+
+		System.out.println("------------ zamówienia ------------");
+		// wszystkie zamówienia
+		ClassicModelsDAOImpl<Order, Integer> orderDAO = new ClassicModelsDAOImpl<>(Order.class);
+		List<Order> orders = orderDAO.getAll();
+		for (Order o : orders) {
+			System.out.println(o.getOrderNumberId());
+		}
+
+		// wszystkie produkty
+		System.out.println("------------ produkty ------------");
+		ProductDAO productDAO2 = new ProductDAO(Product.class);
+
+		allProducts = productDAO2.getAll();
+		for (Object data : allProducts) {
+			Object[] p = (Object[]) data;
+			for (Object o : p)
+				System.out.println(o);
+		}
 
 	}
 }
